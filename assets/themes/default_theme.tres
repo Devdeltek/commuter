@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ctvhsjhqefjem"]
+
+[ext_resource type="FontFile" uid="uid://b4i6g6hov1uc3" path="res://assets/fonts/heavy heap rg.otf" id="1_gn4hg"]
+
+[resource]
+default_font = ExtResource("1_gn4hg")
+default_font_size = 32
+Label/colors/font_color = Color(0, 0, 0, 1)
+TooltipLabel/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+TooltipPanel/colors/title_color = Color(1, 1, 1, 1)

@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv1ifcek3xrsh"]
+
+[ext_resource type="FontFile" uid="uid://bcbj244ylfn62" path="res://assets/fonts/Brada Riders.ttf" id="2_ed0rb"]
+[ext_resource type="Script" path="res://scenes/menus/main_menu/main_menu.gd" id="2_fjgqh"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_fjgqh")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title_box" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="title_label" type="Label" parent="VBoxContainer/title_box"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ed0rb")
+theme_override_font_sizes/font_size = 75
+text = "COMMUTER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="subtitle_label" type="Label" parent="VBoxContainer/title_box"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Road To Retention
+"
+
+[node name="button_box" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="load_level_button" type="Button" parent="VBoxContainer/button_box"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Load Level
+"
+icon_alignment = 1
+
+[node name="create_level_button" type="Button" parent="VBoxContainer/button_box"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Create Level
+"
+
+[node name="options_button" type="Button" parent="VBoxContainer/button_box"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Options"
+
+[node name="credits_button" type="Button" parent="VBoxContainer/button_box"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Credits
+"
+
+[node name="quit_button" type="Button" parent="VBoxContainer/button_box"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Quit"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/button_box/load_level_button" to="." method="_on_load_level_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_box/create_level_button" to="." method="_on_create_level_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_box/options_button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_box/credits_button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_box/quit_button" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,145 @@
+[gd_scene load_steps=4 format=3 uid="uid://dneyol4yrf3tu"]
+
+[ext_resource type="Script" path="res://scenes/menus/create_level/create_level.gd" id="1_jqacu"]
+[ext_resource type="FontFile" uid="uid://d4iybdfdy1upi" path="res://assets/fonts/coolvetica rg.otf" id="2_0347b"]
+
+[sub_resource type="Theme" id="Theme_hjncf"]
+default_font = ExtResource("2_0347b")
+default_font_size = 16
+
+[node name="CreateLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jqacu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="upload_box_label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Upload Data"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Acceptable Formats:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="csv_w_tooltip_label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+tooltip_text = "with columns:
+	longitude, latitude, Alt(M) 
+OR
+X, Y, Z (scale 1 meter)"
+mouse_filter = 1
+text = "CSV
+"
+
+[node name="or_spacer" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Or
+"
+
+[node name="json_w_tooltip_label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+tooltip_text = "Following GeoJSON format:
+Following this format:
+  \"features\":[
+    \"geometry\":{
+      \"type\": \"LineString\"
+      \"coordinates\":[
+        [long1, lat1, alt1],
+        [long2, lat2, alt2],
+      ]
+    }
+  ]"
+mouse_filter = 1
+text = "JSON"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "All points need to be in order
+Alt/Z will default to 0 if not provided
+Can upload route from work if differs
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="route_to_button" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Route To Work"
+
+[node name="route_from_button" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Route From Work
+"
+
+[node name="fd_load" type="FileDialog" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(400, 500)
+min_size = Vector2i(400, 400)
+theme = SubResource("Theme_hjncf")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Add Details"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Generate"
+
+[node name="back_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Back
+"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/route_to_button" to="." method="_on_route_to_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/route_from_button" to="." method="_on_route_from_button_pressed"]
+[connection signal="file_selected" from="VBoxContainer/HBoxContainer/VBoxContainer/fd_load" to="." method="_on_fd_load_file_selected"]
+[connection signal="pressed" from="VBoxContainer/back_button" to="." method="_on_back_button_pressed"]
